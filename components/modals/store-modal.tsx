@@ -66,7 +66,7 @@ export const StoreModal = () => {
                           {...field}
                         />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage  />
                     </FormItem>
                   )}
                 />
