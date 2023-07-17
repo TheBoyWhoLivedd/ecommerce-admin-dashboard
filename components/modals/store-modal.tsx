@@ -1,8 +1,10 @@
 "use client";
 
 import * as z from "zod";
+import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -38,7 +40,15 @@ export const StoreModal = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/stores", values);
+      window.location.assign(`/${response.data.id}`);
+    } catch (error: any) {
+      toast.error(`Something went wrong: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -66,12 +76,13 @@ export const StoreModal = () => {
                           {...field}
                         />
                       </FormControl>
-                      <FormMessage  />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
                 <div className="pt-6 space-x-2 flex items-center justify-end w-full">
                   <Button
+                    type="button"
                     disabled={loading}
                     variant="outline"
                     onClick={storeModal.onClose}

@@ -1,6 +1,5 @@
 "use client";
 import { useStoreModal } from "@/hooks/use-store-modal";
-import { UserButton } from "@clerk/nextjs";
 import { useEffect } from "react";
 
 export default function SetupPage() {
@@ -13,10 +12,7 @@ export default function SetupPage() {
     }
   }, [isOpen, onOpen]);
 
-  return (
-    <div className="p-4">
-      <p>Protected Route</p>
-      <UserButton afterSignOutUrl="/" />
-    </div>
-  );
+  return null;
 }
+
+//This is just a page that triggers the modal if the user has not created a store yet.
