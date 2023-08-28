@@ -3,8 +3,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/providers/modal-provider";
-import {ToasterProvider} from "@/providers/toast-provider";
-
+import { ToasterProvider } from "@/providers/toast-provider";
+import { ThemeProvider } from "@/providers/tooltip-provider";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { cn } from "@/lib/utils"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,11 +21,19 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
+      <html lang="en" suppressHydrationWarning>
+      <body className={cn(inter.className, 'bg-background')}>
           <ToasterProvider />
           <ModalProvider />
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+          <ThemeSwitcher />
         </body>
       </html>
     </ClerkProvider>
