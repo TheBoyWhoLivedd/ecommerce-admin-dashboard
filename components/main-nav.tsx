@@ -53,6 +53,7 @@ export function MainNav({
       active: pathname === `/${params.storeId}/settings`,
     },
   ];
+
   return (
     <nav
       className={cn("flex items-center space-x-4 lg:space-x-6", className)}

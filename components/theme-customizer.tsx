@@ -40,7 +40,7 @@ export function ThemeCustomizer() {
         <DrawerTrigger asChild>
           <Button variant="outline" className="md:hidden">
             <Paintbrush className="mr-2 h-4 w-4" />
-            Customize
+            <span className="hidden md:inline">Customize</span>
           </Button>
         </DrawerTrigger>
         <DrawerContent className="h-[85%] p-6 pt-10">

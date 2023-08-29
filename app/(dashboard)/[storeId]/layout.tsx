@@ -30,7 +30,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div>
+    <div className=" flex flex-col">
       <ThemeWrapper>
         <Navbar />
         {children}
